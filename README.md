@@ -5,3 +5,4 @@
 - Maven
 - JUnit with AssertJ
 - Travis CI
+- Lombok
