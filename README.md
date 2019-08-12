@@ -6,3 +6,4 @@
 - JUnit with AssertJ
 - Travis CI
 - Lombok
+- Lombok2
