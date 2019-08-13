@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import scooter.Scooter;
 import scooter.ScooterRental;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
@@ -99,4 +100,40 @@ class ScooterRentalTest {
         assertEquals(40.0, cost);
 
     }
+
+    @Test
+    void normalTarrif(){
+        ScooterRental scooterRental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        scooter1.setStart(LocalDateTime.of(2019, 8, 12, 11, 2));
+
+        double cost = scooterRental.tariff(scooter1);
+
+        assertEquals(1.0, cost);
+    }
+
+    @Test
+    void weekendTarrif(){
+        ScooterRental scooterRental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        scooter1.setStart(LocalDateTime.of(2019, 8, 18, 11, 2));
+
+        double cost = scooterRental.tariff(scooter1);
+
+        assertEquals(0.5, cost);
+        assertEquals(DayOfWeek.SUNDAY, scooter1.getStart().getDayOfWeek());
+    }
+
+    @Test
+    void doubleTarrif(){
+        ScooterRental scooterRental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        scooter1.setStart(LocalDateTime.of(2019, 8, 12, 8, 2));
+
+        double cost = scooterRental.tariff(scooter1);
+
+        assertEquals(2.0, cost);
+    }
+
+
 }
