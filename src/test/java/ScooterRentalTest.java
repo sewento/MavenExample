@@ -59,13 +59,35 @@ class ScooterRentalTest {
     }
 
     @Test
-    void getCost() {
+    void getCostDoubleTariff() {
         ScooterRental scooterRental = new ScooterRental();
         Scooter scooter1 = new Scooter(1);
-        scooter1.setStart(LocalDateTime.of(2019, 8, 12, 13, 2));
-        double cost = scooterRental.getCost(LocalDateTime.of(2019, 8, 12, 14, 22), scooter1);
+        scooter1.setStart(LocalDateTime.of(2019, 8, 12, 8, 2));
+        double cost = scooterRental.getCost(LocalDateTime.of(2019, 8, 12, 9, 22), scooter1);
+
+        assertEquals(160.0, cost);
+
+    }
+
+    @Test
+    void getCostNormalTariff() {
+        ScooterRental scooterRental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        scooter1.setStart(LocalDateTime.of(2019, 8, 12, 11, 2));
+        double cost = scooterRental.getCost(LocalDateTime.of(2019, 8, 12, 12, 22), scooter1);
 
         assertEquals(80.0, cost);
+
+    }
+
+    @Test
+    void getCostWeekendTariff() {
+        ScooterRental scooterRental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        scooter1.setStart(LocalDateTime.of(2019, 8, 17, 8, 2));
+        double cost = scooterRental.getCost(LocalDateTime.of(2019, 8, 17, 9, 22), scooter1);
+
+        assertEquals(40.0, cost);
 
     }
 }
