@@ -32,12 +32,13 @@ public class ScooterRental {
             if (scooter.getId() == id && scooter.isRented()) {
                 scooter.setRented(false);
                 cost = getCost(current, scooter);
+                scooter.setStart(null);
             }
         }
         return cost;
     }
 
-    private int getCost(LocalDateTime current, Scooter scooter) {
+    public int getCost(LocalDateTime current, Scooter scooter) {
         return ((current.getHour() * 60) + current.getMinute()) - (scooter.getStart().getHour() * 60 + scooter.getStart().getMinute());
     }
 

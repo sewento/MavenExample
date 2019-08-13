@@ -17,7 +17,7 @@ class ScooterRentalTest {
         rental.addScooter(scooter1);
         rental.addScooter(scooter2);
 
-        assertEquals(2,rental.getRental().size());
+        assertEquals(2, rental.getRental().size());
     }
 
     @Test
@@ -25,7 +25,7 @@ class ScooterRentalTest {
         ScooterRental rental = new ScooterRental();
         Scooter scooter1 = new Scooter(1);
         rental.addScooter(scooter1);
-        rental.rentScooter(1, LocalDateTime.of(2019,8,12,13,2));
+        rental.rentScooter(1, LocalDateTime.of(2019, 8, 12, 13, 2));
 
         assertTrue(scooter1.isRented());
     }
@@ -58,4 +58,14 @@ class ScooterRentalTest {
         assertTrue(scooter1.isBlocked());
     }
 
+    @Test
+    void getCost() {
+        ScooterRental scooterRental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        scooter1.setStart(LocalDateTime.of(2019, 8, 12, 13, 2));
+        double cost = scooterRental.getCost(LocalDateTime.of(2019, 8, 12, 14, 22), scooter1);
+
+        assertEquals(80.0, cost);
+
+    }
 }
