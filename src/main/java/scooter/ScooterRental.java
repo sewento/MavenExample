@@ -3,14 +3,18 @@ package scooter;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
- class ScooterRental {
+public class ScooterRental {
     private ArrayList<Scooter> rental = new ArrayList<>();
 
-    void addScooter(Scooter scooter) {
+    public ArrayList<Scooter> getRental() {
+        return rental;
+    }
+
+    public void addScooter(Scooter scooter) {
         rental.add(scooter);
     }
 
-     Scooter rentScooter(int id, LocalDateTime startTime) {
+    public Scooter rentScooter(int id, LocalDateTime startTime) {
         Scooter toRent = null;
         for (Scooter scooter : rental) {
             if (scooter.getId() == id && (!scooter.isBlocked() || !scooter.isRented())) {
@@ -22,7 +26,7 @@ import java.util.ArrayList;
         return toRent;
     }
 
-     double returnScooter(int id, LocalDateTime current) {
+    public double returnScooter(int id, LocalDateTime current) {
         double cost = 0;
         for (Scooter scooter : rental) {
             if (scooter.getId() == id && scooter.isRented()) {
@@ -37,7 +41,7 @@ import java.util.ArrayList;
         return ((current.getHour() * 60) + current.getMinute()) - (scooter.getStart().getHour() * 60 + scooter.getStart().getMinute());
     }
 
-     void update(LocalDateTime current) {
+    public void update(LocalDateTime current) {
         for (Scooter scooter : rental) {
             if (!scooter.isBlocked() && (current.isAfter(scooter.getStart().plusMinutes(120)))) {
                 scooter.setBlocked(true);
