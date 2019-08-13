@@ -32,6 +32,15 @@ class ScooterRentalTest {
 
     @Test
     void returnScooter() {
+        ScooterRental rental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        rental.addScooter(scooter1);
+        rental.rentScooter(1, LocalDateTime.of(2019, 8, 12, 13, 2));
+
+        double cost = rental.returnScooter(1,LocalDateTime.of(2019, 8, 12, 14, 7));
+
+        assertEquals(65.0, cost);
+        assertFalse(scooter1.isRented());
     }
 
     @Test
