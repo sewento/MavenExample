@@ -1,11 +1,14 @@
 package scooter;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ScooterRental {
     private ArrayList<Scooter> rental = new ArrayList<>();
+
+    public ArrayList<Scooter> getRental() {
+        return rental;
+    }
 
     public void addScooter(Scooter scooter) {
         rental.add(scooter);
