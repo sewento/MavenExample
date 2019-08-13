@@ -35,7 +35,27 @@ class ScooterRentalTest {
     }
 
     @Test
-    void update() {
+    void notBlockingLessThan2HoursRent() {
+        ScooterRental rental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        rental.addScooter(scooter1);
+        rental.rentScooter(1, LocalDateTime.of(2019,8,12,13,2));
+
+        rental.update(LocalDateTime.of(2019,8,12,14,2));
+
+        assertFalse(scooter1.isBlocked());
+    }
+
+    @Test
+    void blockingOver2HoursRent() {
+        ScooterRental rental = new ScooterRental();
+        Scooter scooter1 = new Scooter(1);
+        rental.addScooter(scooter1);
+        rental.rentScooter(1, LocalDateTime.of(2019,8,12,13,2));
+
+        rental.update(LocalDateTime.of(2019,8,12,16,2));
+
+        assertTrue(scooter1.isBlocked());
     }
 
     @Test
